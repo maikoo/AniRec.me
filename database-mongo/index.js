@@ -19,6 +19,10 @@ var animeSchema = mongoose.Schema({
   description: String,
   page_url: String,
   pic_url: String,
+  genre: {
+    primary: String,
+    secondary: String,
+  },
   score: Number,
   release: Date,
 });
@@ -28,6 +32,10 @@ var movieSchema = mongoose.Schema({
   description: String,
   page_url: String,
   pic_url: String,
+  genre: {
+    primary: String,
+    secondary: String,
+  },
   score: Number,
   release: Date,
 });
@@ -35,7 +43,17 @@ var movieSchema = mongoose.Schema({
 var Anime = mongoose.model('Anime', animeSchema);
 var Movie = mongoose.model('Movie', movieSchema);
 
-var selectAll = function(callback) {
+var selectAllMovies = function(callback) {
+  Movie.find({}, function(err, movies) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, movies);
+    }
+  });
+};
+
+var selectAllAnime = function(callback) {
   Anime.find({}, function(err, animes) {
     if (err) {
       callback(err, null);
@@ -45,4 +63,7 @@ var selectAll = function(callback) {
   });
 };
 
-module.exports.selectAll = selectAll;
+module.exports = {
+  selectAllMovies,
+  selectAllAnime,
+};
