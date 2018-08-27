@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import ListItem from "./ListItem.jsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+import ListItem from './ListItem.jsx';
 
 const styles = theme => ({
   root: {
@@ -18,23 +19,11 @@ const styles = theme => ({
   },
 });
 
-// const List = props => (
-//   <div>
-//     <h4> List Component </h4>
-//     There are {props.movies.length} movies.
-//     {props.movies.map((movie, key) => (
-//       <ListItem key={key} movie={movie} />
-//     ))}
-//   </div>
-// );
-
-// export default List;
-
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      spacing: "16",
+      spacing: '16',
     };
     this.handleChange = this.handleChange.bind(this);
   }
