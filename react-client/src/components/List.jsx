@@ -4,9 +4,9 @@ import ListItem from './ListItem.jsx';
 const List = props => (
   <div>
     <h4> List Component </h4>
-    There are {props.items.length} items.
-    {props.items.map((item, key) => (
-      <ListItem key={key} item={item} />
+    There are {props.movies.length} movies.
+    {props.movies.map((movie, key) => (
+      <ListItem key={key} movie={movie} />
     ))}
   </div>
 );
