@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import App from "./components/App";
-import "./stylesheets/main.scss";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import App from './components/App';
 
 class Index extends Component {
   constructor(props) {
@@ -18,4 +17,4 @@ class Index extends Component {
   }
 }
 
-ReactDOM.render(<Index />, document.getElementById("app"));
+ReactDOM.render(<Index />, document.getElementById('app'));
