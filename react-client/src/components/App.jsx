@@ -1,29 +1,62 @@
-import React, { Component } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import List from "./List";
-import movieAPIKey from "../../../server/movieKey";
-import SearchBar from "./searchBar";
-import MenuAppBar from "./navBar";
-import { findGenre } from "../genres";
-import background from "../../tenor.gif";
+import React, { Component } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import List from './List';
+import movieAPIKey from '../../../server/movieKey';
+import SearchBar from './searchBar';
+import MenuAppBar from './navBar';
+import { findGenre } from '../genres';
+import background from '../../tenor.gif';
+import Typography from '@material-ui/core/Typography';
 
-var sectionStyle = {
-  width: "100%",
-  height: "400px",
-  // backgroundImage: `url(${background})`,
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  backgroundSize: "cover",
+const styles = {
+  root: {
+    width: '100%',
+    maxWidth: 500,
+  },
 };
+
+const Image = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url(${background});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
+const Container = styled.div`
+  position: relative;
+  text-align: center;
+  color: white;
+  height: auto;
+  width: 100%;
+`;
+const Section = styled.div`
+  margin-right: 1.8rem;
+  margin-left: 1.8rem;
+  padding-right: 20px;
+  padding-left: 20px;
+`;
+
+const TitleDiv = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.4rem;
+  color: white !important;
+`;
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movies: [],
-      movieTitle: "mission impossible",
+      movieTitle: 'mission impossible',
       genres: [],
       anime: [],
     };
@@ -52,6 +85,10 @@ export default class App extends Component {
       });
   }
 
+  fetchAnime() {
+    const genres = this.state;
+  }
+
   handleChange(e) {
     this.setState({ movieTitle: e.target.value }, () => {
       if (this.state.movieTitle && this.state.movieTitle.length > 1) {
@@ -65,19 +102,32 @@ export default class App extends Component {
 
   render() {
     const overlay = styled.div``;
+    const whiteFont = { color: 'white' };
     return (
       <div>
         <MenuAppBar />
         <br />
-        <br />
-        <br />
-        <div>
+        <Section>
           <SearchBar
             term={this.state.movieTitle}
             onChangeValue={this.handleChange}
           />
-        </div>
-        {/* <img style={sectionStyle} src={background} /> */}
+        </Section>
+        <br />
+        <Container>
+          <Image src={background} />
+          <TitleDiv>
+            <Typography style={whiteFont} variant="display3">
+              Movies to Anime
+            </Typography>
+            <Section>
+              <SearchBar
+                term={this.state.movieTitle}
+                onChangeValue={this.handleChange}
+              />
+            </Section>
+          </TitleDiv>
+        </Container>
         <br />
         <List movies={this.state.movies.slice(0, 3)} />
       </div>
