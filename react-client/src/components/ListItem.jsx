@@ -1,83 +1,60 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import red from "@material-ui/core/colors/red";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { findGenre } from "../genres";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import red from '@material-ui/core/colors/red';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { findGenre } from '../genres';
 
 const img = {
-  objectFit: "contain !important",
+  objectFit: 'contain !important',
   maxWidth: 400,
 };
 
 const styles = theme => ({
   card: {
-    //height: "auto",
     maxWidth: 400,
   },
   media: {
-    // height: 300,
-    // objectFit: "contain",
-    maxWidth: 200,
-    paddingTop: "56.25%", // 16:9
+    height: 'auto',
+    width: 400,
+    maxHeight: 300,
+    maxWidth: 400,
+    paddingTop: '56.25%', // 16:9
   },
   actions: {
-    display: "flex",
+    display: 'flex',
   },
   expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: "auto",
-    [theme.breakpoints.up("sm")]: {
+    marginLeft: 'auto',
+    [theme.breakpoints.up('sm')]: {
       marginRight: -8,
     },
   },
   expandOpen: {
-    transform: "rotate(180deg)",
+    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
   },
 });
-
-// class ListItem extends Component {
-
-//   render() {
-//     const Image = styled.img`
-//     height: 150px;
-//     width: auto;
-//     `;
-//     const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
-//       props.movie.poster_path
-//     }`;
-//     return (
-//       <div>
-//         <h3>{props.movie.title}</h3>
-//         <Image src={movieURL} />
-//         <div>{props.movie.overview.slice(0, 100)}</div>
-//         <div>{findGenre(props.movie.genre_ids)}</div>
-//       </div>
-//     );
-//   }
-// };
-
-// export default ListItem;
 
 class MovieItem extends Component {
   constructor(props) {
@@ -96,9 +73,6 @@ class MovieItem extends Component {
     const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
       movie.poster_path
     }`;
-    // const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
-    //   movie.backdrop_path
-    // }`;
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -148,14 +122,14 @@ class MovieItem extends Component {
             </Typography>
             <Typography paragraph>{findGenre(movie.genre_ids)}</Typography>
             <Typography paragraph>
-              {movie.overview.slice(0, 100) + "..."}
+              {movie.overview.slice(0, 150) + '...'}
             </Typography>
             <Typography paragraph>
-              Movie Popularity: {movie.popularity}
+              Movie Popularity: {' ' + movie.popularity}
             </Typography>
             <Typography>
               Vote Average:
-              {movie.vote_average}
+              {' ' + movie.vote_average}
             </Typography>
           </CardContent>
         </Collapse>
