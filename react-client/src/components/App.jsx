@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Typography from '@material-ui/core/Typography';
 import List from './List';
-import movieAPIKey from '../../../server/movieKey';
 import SearchBar from './searchBar';
 import MenuAppBar from './navBar';
+import movieAPIKey from '../../../server/movieKey';
 import { findGenre } from '../genres';
 import background from '../../tenor.gif';
-import Typography from '@material-ui/core/Typography';
 
 const styles = {
   root: {
@@ -63,14 +63,18 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchMovies();
+  }
+
+  componentDidMount() {
+    // this.fetchAnime();
   }
 
   fetchMovies() {
     const { movieTitle } = this.state;
     const apiKey = movieAPIKey.movieAPIkey;
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieTitle}&page=1&include_adult=false&limit=3`;
+    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${movieTitle}&page=1&include_adult=false`;
     axios
       .get(apiUrl)
       .then(response => {
@@ -79,21 +83,57 @@ export default class App extends Component {
           genres: findGenre(response.data.results[0].genre_ids),
         });
         console.log(this.state);
+        this.fetchAnime(this.state.genres[0]);
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  fetchAnime() {
-    const genres = this.state;
+  fetchAnime(targetGenre) {
+    console.log(targetGenre, typeof targetGenre);
+    const aniVar = { genre_in: 'Action' };
+    const aniQuery = `
+      query {
+        Page(page: 1, perPage: 5) {
+          media(genre: "${targetGenre}", averageScore_greater: 80, startDate_greater: 2015, sort: TRENDING_DESC) {
+            genres,
+              title {
+              romaji
+              english
+              native
+            },
+            averageScore,
+              startDate {
+              year
+            }
+          }
+        }
+      }
+    `;
+
+    axios({
+      url: 'https://graphql.anilist.co',
+      method: 'POST',
+      data: {
+        query: aniQuery,
+      },
+    })
+      .then(result => {
+        this.setState({
+          anime: result.data.data['Page'].media,
+        });
+        console.log(this.state.anime);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   handleChange(e) {
     this.setState({ movieTitle: e.target.value }, () => {
       if (this.state.movieTitle && this.state.movieTitle.length > 1) {
         if (this.state.movieTitle.length % 2 === 0) {
-          // console.log(this.state.movieTitle);
           this.fetchMovies();
         }
       }
@@ -118,7 +158,7 @@ export default class App extends Component {
           <Image src={background} />
           <TitleDiv>
             <Typography style={whiteFont} variant="display3">
-              Movies to Anime
+              RecAni.me
             </Typography>
             <Section>
               <SearchBar
@@ -129,7 +169,7 @@ export default class App extends Component {
           </TitleDiv>
         </Container>
         <br />
-        <List movies={this.state.movies.slice(0, 3)} />
+        <List movies={this.state.movies.slice(0, 6)} />
       </div>
     );
   }
