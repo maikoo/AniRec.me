@@ -1,31 +1,69 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+const mongoose = require('mongoose');
+const db = mongoose.connect(
+  'mongodb://localhost:27017/test',
+  { useMongoClient: true }
+);
+const conn = mongoose.connection;
+mongoose.Promise = global.Promise;
 
-var db = mongoose.connection;
-
-db.on('error', function() {
+conn.on('error', function() {
   console.log('mongoose connection error');
 });
 
-db.once('open', function() {
+conn.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var animeSchema = mongoose.Schema({
+  name: String,
+  description: String,
+  page_url: String,
+  pic_url: String,
+  genre: {
+    primary: String,
+    secondary: String,
+  },
+  score: Number,
+  release: Date,
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var movieSchema = mongoose.Schema({
+  name: String,
+  description: String,
+  page_url: String,
+  pic_url: String,
+  genre: {
+    primary: String,
+    secondary: String,
+  },
+  score: Number,
+  release: Date,
+});
 
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
+var Anime = mongoose.model('Anime', animeSchema);
+var Movie = mongoose.model('Movie', movieSchema);
+
+var selectAllMovies = function(callback) {
+  Movie.find({}, function(err, movies) {
+    if (err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, movies);
     }
   });
 };
 
-module.exports.selectAll = selectAll;
+var selectAllAnime = function(callback) {
+  Anime.find({}, function(err, animes) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, animes);
+    }
+  });
+};
+
+module.exports = {
+  selectAllMovies,
+  selectAllAnime,
+};
