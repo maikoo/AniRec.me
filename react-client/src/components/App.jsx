@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-import List from './List';
-import movieAPIKey from '../../../server/movieKey';
-import SearchBar from './searchBar';
-import MenuAppBar from './navBar';
-import { findGenre } from '../genres';
+import React, { Component } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import List from "./List";
+import movieAPIKey from "../../../server/movieKey";
+import SearchBar from "./searchBar";
+import MenuAppBar from "./navBar";
+import { findGenre } from "../genres";
+import background from "../../tenor.gif";
+
+var sectionStyle = {
+  width: "100%",
+  height: "400px",
+  // backgroundImage: `url(${background})`,
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  backgroundSize: "cover",
+};
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movies: [],
-      movieTitle: '',
+      movieTitle: "mission impossible",
       genres: [],
       anime: [],
     };
@@ -54,10 +64,10 @@ export default class App extends Component {
   }
 
   render() {
+    const overlay = styled.div``;
     return (
       <div>
         <MenuAppBar />
-        {/* <h1>Movies to Anime</h1> */}
         <br />
         <br />
         <br />
@@ -67,8 +77,9 @@ export default class App extends Component {
             onChangeValue={this.handleChange}
           />
         </div>
+        {/* <img style={sectionStyle} src={background} /> */}
         <br />
-        <List movies={this.state.movies.slice(0, 5)} />
+        <List movies={this.state.movies.slice(0, 3)} />
       </div>
     );
   }
