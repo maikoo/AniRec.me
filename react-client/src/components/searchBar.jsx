@@ -98,7 +98,7 @@ class SearchBar extends Component {
           <TextField
             //label="You want Anime recommendations for..."
             type="text"
-            // placeholder="Search for..."
+            placeholder="Search for..."
             value={this.props.value}
             onChange={this.props.onChangeValue}
             id="full-width"
