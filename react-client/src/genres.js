@@ -78,15 +78,15 @@ const genres = [
 ];
 
 const findGenre = idArr => {
-  let genresString = [];
+  let genresArr = [];
   genres.forEach(ele => {
     idArr.forEach(id => {
       if (ele.id === id) {
-        genresString.push(ele.name);
+        genresArr.push(ele.name);
       }
     });
   });
-  return genresString.join(', ');
+  return genresArr;
 };
 
 module.exports = {
