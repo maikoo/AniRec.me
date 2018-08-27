@@ -24,8 +24,9 @@ const styles = theme => ({
     maxWidth: 400,
   },
   media: {
-    height: 0,
+    height: 'auto',
     paddingTop: '56.25%', // 16:9
+    objectFit: 'cover',
   },
   actions: {
     display: 'flex',
@@ -96,7 +97,7 @@ class RecipeReviewCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="Movie" className={classes.avatar}>
-              M
+              {/* {movie.title.slice(0, 1)} */}M
             </Avatar>
           }
           action={
@@ -105,19 +106,15 @@ class RecipeReviewCard extends Component {
             </IconButton>
           }
           title={movie.title}
-          subheader={movie.release_date}
+          subheader={movie.release_date.slice(0, 4)}
         />
         <CardMedia
           className={classes.media}
           image={movieURL}
-          title="Contemplative Reptile"
+          title={movie.title}
         />
         <CardContent>
-          <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
-          </Typography>
+          <Typography component="p">{movie.overview}</Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
@@ -140,17 +137,16 @@ class RecipeReviewCard extends Component {
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph variant="body2">
-              Method:
+              Genres:
             </Typography>
+            <Typography paragraph>{findGenre(movie.genre_ids)}</Typography>
+            {/* <Typography paragraph>something here</Typography> */}
             <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron
-              and set aside for 10 minutes.
+              Movie Popularity: {movie.popularity}
             </Typography>
-            <Typography paragraph>something here</Typography>
-            <Typography paragraph>and here</Typography>
             <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
+              Vote Average:
+              {movie.vote_average}
             </Typography>
           </CardContent>
         </Collapse>
