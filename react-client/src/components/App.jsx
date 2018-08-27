@@ -13,7 +13,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       movies: [],
-      movieTitle: 'lord%20of%20the%20rings',
+      movieTitle: '',
       genres: [],
       anime: [],
     };
@@ -57,12 +57,18 @@ export default class App extends Component {
     return (
       <div>
         <MenuAppBar />
-        <h1>Movies to Anime</h1>
-        <SearchBar
-          term={this.state.movieTitle}
-          onChangeValue={this.handleChange}
-        />
-        <List movies={this.state.movies.slice(0, 1)} />
+        {/* <h1>Movies to Anime</h1> */}
+        <br />
+        <br />
+        <br />
+        <div>
+          <SearchBar
+            term={this.state.movieTitle}
+            onChangeValue={this.handleChange}
+          />
+        </div>
+        <br />
+        <List movies={this.state.movies.slice(0, 5)} />
       </div>
     );
   }
