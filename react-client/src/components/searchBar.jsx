@@ -1,67 +1,67 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   withStyles,
   MuiThemeProvider,
   createMuiTheme,
-} from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import TheatreIcon from '@material-ui/icons/Theaters';
-import { TextField } from '@material-ui/core';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+} from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import TheatreIcon from "@material-ui/icons/Theaters";
+import { TextField } from "@material-ui/core";
+import purple from "@material-ui/core/colors/purple";
+import green from "@material-ui/core/colors/green";
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   margin: {
     margin: theme.spacing.unit,
   },
   cssLabel: {
-    '&$cssFocused': {
+    "&$cssFocused": {
       color: purple[500],
     },
   },
   cssFocused: {},
   cssUnderline: {
-    '&:after': {
+    "&:after": {
       borderBottomColor: purple[500],
     },
   },
   bootstrapRoot: {
     padding: 0,
-    'label + &': {
+    "label + &": {
       marginTop: theme.spacing.unit * 3,
     },
   },
   bootstrapInput: {
     borderRadius: 4,
     backgroundColor: theme.palette.common.white,
-    border: '1px solid #ced4da',
+    border: "1px solid #ced4da",
     fontSize: 16,
-    padding: '10px 12px',
-    width: 'calc(100% - 24px)',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    padding: "10px 12px",
+    width: "calc(100% - 24px)",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
+      "-apple-system",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
-      'Roboto',
+      "Roboto",
       '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
+      "Arial",
+      "sans-serif",
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    ].join(","),
+    "&:focus": {
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
     },
   },
   bootstrapFormLabel: {
@@ -97,6 +97,7 @@ class SearchBar extends Component {
           </InputLabel> */}
           <TextField
             //label="You want Anime recommendations for..."
+            autoFocus={true}
             type="text"
             placeholder="Search for..."
             value={this.props.value}
@@ -104,7 +105,7 @@ class SearchBar extends Component {
             id="full-width"
             InputLabelProps={{ shrink: true }}
             fullWidth
-            //margin="normal"
+            margin="normal"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
