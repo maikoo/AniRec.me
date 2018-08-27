@@ -1,48 +1,55 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { findGenre } from '../genres';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { withStyles } from "@material-ui/core/styles";
+import classnames from "classnames";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import red from "@material-ui/core/colors/red";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { findGenre } from "../genres";
+
+const img = {
+  objectFit: "contain !important",
+  maxWidth: 400,
+};
 
 const styles = theme => ({
   card: {
+    //height: "auto",
     maxWidth: 400,
   },
   media: {
-    height: 'auto',
-    paddingTop: '56.25%', // 16:9
-    objectFit: 'cover',
+    // height: 300,
+    // objectFit: "contain",
+    maxWidth: 200,
+    paddingTop: "56.25%", // 16:9
   },
   actions: {
-    display: 'flex',
+    display: "flex",
   },
   expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
+    marginLeft: "auto",
+    [theme.breakpoints.up("sm")]: {
       marginRight: -8,
     },
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
@@ -72,7 +79,7 @@ const styles = theme => ({
 
 // export default ListItem;
 
-class RecipeReviewCard extends Component {
+class MovieItem extends Component {
   constructor(props) {
     super(props);
     this.state = { expanded: false };
@@ -86,12 +93,12 @@ class RecipeReviewCard extends Component {
   render() {
     const { classes } = this.props;
     const { movie } = this.props;
-    // const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
-    //   movie.poster_path
-    // }`;
     const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
-      movie.backdrop_path
+      movie.poster_path
     }`;
+    // const movieURL = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${
+    //   movie.backdrop_path
+    // }`;
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -114,7 +121,7 @@ class RecipeReviewCard extends Component {
           title={movie.title}
         />
         <CardContent>
-          <Typography component="p">{movie.overview}</Typography>
+          <Typography component="p" />
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
@@ -140,7 +147,9 @@ class RecipeReviewCard extends Component {
               Genres:
             </Typography>
             <Typography paragraph>{findGenre(movie.genre_ids)}</Typography>
-            {/* <Typography paragraph>something here</Typography> */}
+            <Typography paragraph>
+              {movie.overview.slice(0, 100) + "..."}
+            </Typography>
             <Typography paragraph>
               Movie Popularity: {movie.popularity}
             </Typography>
@@ -155,8 +164,8 @@ class RecipeReviewCard extends Component {
   }
 }
 
-RecipeReviewCard.propTypes = {
+MovieItem.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RecipeReviewCard);
+export default withStyles(styles)(MovieItem);
