@@ -21,18 +21,18 @@ import { findGenre } from '../genres';
 
 const img = {
   objectFit: 'contain !important',
-  maxWidth: 400,
+  maxWidth: 300,
 };
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: 300,
   },
   media: {
     height: 'auto',
-    width: 400,
+    width: 300,
     maxHeight: 300,
-    maxWidth: 400,
+    maxWidth: 300,
     paddingTop: '56.25%', // 16:9
   },
   actions: {
@@ -119,8 +119,9 @@ class MovieItem extends Component {
           <CardContent>
             <Typography paragraph variant="body2">
               Genres:
+              {findGenre(movie.genre_ids).join(', ')}
             </Typography>
-            <Typography paragraph>{findGenre(movie.genre_ids)}</Typography>
+            <Typography paragraph />
             <Typography paragraph>
               {movie.overview.slice(0, 150) + '...'}
             </Typography>
