@@ -69,7 +69,7 @@ class SearchBar extends Component {
             type="text"
             placeholder="Search for..."
             value={this.props.value}
-            onChange={this.props.onChangeValue}
+            onKeyUp={this.props.onChangeValue}
             id="full-width"
             InputLabelProps={{ shrink: true }}
             fullWidth
@@ -83,7 +83,7 @@ class SearchBar extends Component {
             }}
           />
           <FormHelperText id="name-helper-text">
-            Search favorite movies
+            {/* Search favorite movies */}
           </FormHelperText>
 
           {/* <FormControl className={classes.margin}>
