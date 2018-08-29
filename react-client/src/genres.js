@@ -89,6 +89,32 @@ const findGenre = idArr => {
   return genresArr;
 };
 
+// {
+//   "data": {
+//     "GenreCollection": [
+//       "Action",
+//       "Adventure",
+//       "Comedy",
+//       "Drama",
+//       "Ecchi",
+//       "Fantasy",
+//       "Hentai",
+//       "Horror",
+//       "Mahou Shoujo",
+//       "Mecha",
+//       "Music",
+//       "Mystery",
+//       "Psychological",
+//       "Romance",
+//       "Sci-Fi",
+//       "Slice of Life",
+//       "Sports",
+//       "Supernatural",
+//       "Thriller"
+//     ]
+//   }
+// }
+
 module.exports = {
   genres,
   findGenre,
