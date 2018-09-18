@@ -1,3 +1,3 @@
 # RecAni.me
 
-![alt text](https://imgur.com/a/DhY8Dd1 "")
+![alt text](https://github.com/maikoo/RecAni.me/blob/master/recani.me.JPG "")
