@@ -54,17 +54,7 @@ class SearchBar extends Component {
     return (
       <div>
         <form className={classes.container} noValidate autoComplete="off">
-          {/* <InputLabel
-            FormLabelClasses={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
-            }}
-            htmlFor="custom-css-input"
-          >
-            Custom CSS
-          </InputLabel> */}
           <TextField
-            //label="You want Anime recommendations for..."
             autoFocus={true}
             type="text"
             placeholder="Search for..."
