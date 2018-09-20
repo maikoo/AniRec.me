@@ -52,8 +52,6 @@ const TitleDiv = styled.div`
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    // width: '100%',
-    // maxWidth: 500,
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -75,13 +73,6 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentWillMount() {}
-
-  componentDidMount() {
-    // this.fetchMovies();
-    // this.fetchAnime();
-  }
-
   fetchMovies() {
     const { movieTitle } = this.state;
     const apiKey = movieAPIKey.movieAPIkey;
@@ -93,7 +84,6 @@ class App extends Component {
           movies: response.data.results,
           genres: findGenre(response.data.results[0].genre_ids),
         });
-        // console.log(this.state);
         this.fetchAnime(this.state.genres);
       })
       .catch(err => {
@@ -103,7 +93,6 @@ class App extends Component {
 
   fetchAnime(targetGenre) {
     console.log(targetGenre);
-    // const aniVar = targetGenre;
     const aniQuery = `
       query {
         Page(page:1, perPage:5) {
@@ -135,14 +124,12 @@ class App extends Component {
       method: 'POST',
       data: {
         query: aniQuery,
-        // variables: { genres_in: targetGenre },
       },
     })
       .then(result => {
         this.setState({
           anime: result.data.data['Page'].media,
         });
-        // console.log(this.state.anime);
       })
       .catch(err => {
         console.log(err);
@@ -165,7 +152,6 @@ class App extends Component {
   }
 
   render() {
-    // let hidden = <Image src={background} />;
     const whiteFont = { color: 'white' };
     const whiteBackground = {
       border: '2px solid white',
@@ -173,9 +159,7 @@ class App extends Component {
       backgroundColor: 'rgba(255, 255, 255, 0.9)',
     };
     const { classes } = this.props;
-    // if (this.state.hideImage === true) {
-    //   hidden = null;
-    // }
+
     return (
       <div>
         <MenuAppBar />
